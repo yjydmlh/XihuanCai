@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'Guess' /}
 
-<div id="wrap">
+<div id="guess-wrap">
 	<div class="tag-book">
 		<div class="bd">
 			<div class="tag-list clearfix">
@@ -12,11 +12,16 @@
 				</div>
 				<div class="query-item">
 					年龄:
-					<input type="radio" name="gender"/>10~16
-					<input type="radio" name="gender"/>14~20
-					<input type="radio" name="gender"/>18~26
-					<input type="radio" name="gender"/>24~30
-					<input type="radio" name="gender"/>28~36
+					<select>
+						<option>&lt 10</option>
+						<option>10~16</option>
+						<option>17~23</option>
+						<option>24~30</option>
+						<option>31~37</option>
+						<option>37~43</option>
+						<option>44~50</option>
+						<option>&gt 50</option>
+					</select>
 				</div>
 				<div class="query-item">
 					工作行业:
@@ -26,19 +31,157 @@
 						<option>制造业</option>
 					</select>
 				</div>
+				<div class="query-item">
+					日常爱好:
+					<input type="checkbox" name=""/>数码
+					<input type="checkbox" name=""/>聚会
+					<input type="checkbox" name=""/>旅游
+					<input type="checkbox" name=""/>手工
+				</div>
 			</div>
 		</div>
 		<div class="ft"></div>
 	</div>
 	<div class="layout972 clearfix">
-		<div class="area" style="height:660px;padding:0 6px 6px;">
-			<div class="shop455" style="top:0px;left:6px;">
-				<div class="cover">
-					<a href="/jie/chapter25">
-						<img class="cover-pic" data-src="http://static.guang.com/img/topic/index/20120125/G1-025.jpg" alt="食全食美" src="http://static.guang.com/img/topic/index/20120125/G1-025.jpg">
+		<div class="guess-area">
+			<!-- goods -->
+			<div class="goods">
+				<div class="goods-pic" style="height:210px">            
+					<a href="/baobei/1004423" target="_blank">                
+						<img src="http://img.guang.com/product/78/21/100/1002178_1325592702411_210X315.jpg" height="210px">
 					</a>
-					<div class="title-line" style="background:#d78400;"></div>
-				</div>
+					
+				</div>      
+				<div class="goods-stat clearfix">
+					<span class="like-num">喜欢</span>
+				</div>                     
+				<ul class="comments">  
+				   <li>
+			       		富含丰富蜂蜜，牛奶，人参精华，温和清洁肌肤，同事有美白功效，适用于干性中性皮肤。
+			       </li>
+				</ul>
+			</div>
+			<div class="goods">
+				<div class="goods-pic" style="height:210px">            
+					<a href="/baobei/1004423" target="_blank">                
+						<img src="http://img.guang.com/product/78/07/100/1000778_1325141447063_210X315.jpg" height="210px">
+					</a>
+					
+				</div>      
+				<div class="goods-stat clearfix">
+					<span class="like-num">喜欢</span>
+				</div>                     
+				<ul class="comments">  
+				   <li>
+			       		富含丰富蜂蜜，牛奶，人参精华，温和清洁肌肤，同事有美白功效，适用于干性中性皮肤。
+			       </li>
+				</ul>
+			</div>
+			<div class="goods">
+				<div class="goods-pic" style="height:210px">            
+					<a href="/baobei/1004423" target="_blank">                
+						<img src="http://img.guang.com/product/28/45/100/1004528_1326686411025_210X315.jpg" height="210px">
+					</a>
+					
+				</div>      
+				<div class="goods-stat clearfix">
+					<span class="like-num">喜欢</span>
+				</div>                     
+				<ul class="comments">  
+				   <li>
+			       		富含丰富蜂蜜，牛奶，人参精华，温和清洁肌肤，同事有美白功效，适用于干性中性皮肤。
+			       </li>
+				</ul>
+			</div>
+			<div class="goods">
+				<div class="goods-pic" style="height:210px">            
+					<a href="/baobei/1004423" target="_blank">                
+						<img src="http://img.guang.com/product/81/44/100/1004481_1326533155869_210X315.jpg" height="210px">
+					</a>
+				</div>      
+				<div class="goods-stat clearfix">
+					<span class="like-num">喜欢</span>
+				</div>                     
+				<ul class="comments">  
+				   <li>
+			       		富含丰富蜂蜜，牛奶，人参精华，温和清洁肌肤，同事有美白功效，适用于干性中性皮肤。
+			       </li>
+				</ul>
+			</div>
+			<div class="goods">
+				<div class="goods-pic" style="height:210px">            
+					<a href="/baobei/1004423" target="_blank">                
+						<img src="http://img.guang.com/product/88/44/100/1004488_1326532586087_210X315.jpg" height="210px">
+					</a>
+				</div>      
+				<div class="goods-stat clearfix">
+					<span class="like-num">喜欢</span>
+				</div>                     
+				<ul class="comments">  
+				   <li>
+			       		富含丰富蜂蜜，牛奶，人参精华，温和清洁肌肤，同事有美白功效，适用于干性中性皮肤。
+			       </li>
+				</ul>
+			</div>
+			<div class="goods">
+				<div class="goods-pic" style="height:210px">            
+					<a href="/baobei/1004423" target="_blank">                
+						<img src="http://img.guang.com/product/75/44/100/1004475_1326531499210_210X315.jpg" height="210px">
+					</a>
+				</div>      
+				<div class="goods-stat clearfix">
+					<span class="like-num">喜欢</span>
+				</div>                     
+				<ul class="comments">  
+				   <li>
+			       		富含丰富蜂蜜，牛奶，人参精华，温和清洁肌肤，同事有美白功效，适用于干性中性皮肤。
+			       </li>
+				</ul>
+			</div>
+			<div class="goods">
+				<div class="goods-pic" style="height:210px">            
+					<a href="/baobei/1004423" target="_blank">                
+						<img src="http://img.guang.com/product/95/45/100/1004595_1326706124336_210X315.jpg" height="210px">
+					</a>
+				</div>      
+				<div class="goods-stat clearfix">
+					<span class="like-num">喜欢</span>
+				</div>                     
+				<ul class="comments">  
+				   <li>
+			       		富含丰富蜂蜜，牛奶，人参精华，温和清洁肌肤，同事有美白功效，适用于干性中性皮肤。
+			       </li>
+				</ul>
+			</div>
+			<div class="goods">
+				<div class="goods-pic" style="height:210px">            
+					<a href="/baobei/1004423" target="_blank">                
+						<img src="http://img.guang.com/product/86/45/100/1004586_1326703615068_210X315.jpg" height="210px">
+					</a>
+				</div>      
+				<div class="goods-stat clearfix">
+					<span class="like-num">喜欢</span>
+				</div>                     
+				<ul class="comments">  
+				   <li>
+			       		富含丰富蜂蜜，牛奶，人参精华，温和清洁肌肤，同事有美白功效，适用于干性中性皮肤。
+			       </li>
+				</ul>
+			</div>
+			
+		</div>
+		<!-- 分页 -->
+		<div class="page-box" style="display: block; ">
+			<div class="pagin inlineblock clearfix">
+				<a href="#">上一页</a>
+				<a href="#">1</a>
+				<span>2</span>
+				<a href="#">3</a>
+				<a href="#">4</a>
+				<span>...</span>
+				<a href="#">14</a>
+				<a href="#">15</a>
+				<a href="#">下一页</a>
 			</div>
 		</div>
 	</div>

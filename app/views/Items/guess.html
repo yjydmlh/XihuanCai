@@ -1,5 +1,11 @@
 #{extends 'main.html' /}
 #{set title:'Guess' /}
+#{set 'moreStyles'}
+     #{stylesheet 'form.css'/}
+#{/set}
+#{set 'moreScripts'}
+  #{script 'custom-form-elements.js' /}
+#{/set}
 
 <div id="guess-wrap">
 	<div class="tag-book">
@@ -7,12 +13,12 @@
 			<div class="tag-list clearfix">
 				<div class="query-item">
 					性别:
-					<input type="radio" name="gender"/>男
-					<input type="radio" name="gender"/>女
+					<input type="radio" name="gender" class="styled"/>男
+					<input type="radio" name="gender" class="styled"/>女
 				</div>
 				<div class="query-item">
 					年龄:
-					<select>
+					<select class="styled">
 						<option>&lt 10</option>
 						<option>10~16</option>
 						<option>17~23</option>
@@ -25,7 +31,7 @@
 				</div>
 				<div class="query-item">
 					工作行业:
-					<select>
+					<select class="styled">
 						<option>教育</option>
 						<option>互联网</option>
 						<option>制造业</option>
@@ -33,10 +39,10 @@
 				</div>
 				<div class="query-item">
 					日常爱好:
-					<input type="checkbox" name=""/>数码
-					<input type="checkbox" name=""/>聚会
-					<input type="checkbox" name=""/>旅游
-					<input type="checkbox" name=""/>手工
+					<input type="checkbox" name="" class="styled"/>数码
+					<input type="checkbox" name="" class="styled"/>聚会
+					<input type="checkbox" name="" class="styled"/>旅游
+					<input type="checkbox" name="" class="styled"/>手工
 				</div>
 			</div>
 		</div>

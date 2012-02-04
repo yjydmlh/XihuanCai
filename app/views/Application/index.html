@@ -1,19 +1,57 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
-
+#{set 'moreScripts'}
+  #{script 'init.js' /}
+#{/set}
 <div id="wrap">
 	<div class="layout972 clearfix">
 		<div class="area" style="height:660px;padding:0 6px 6px;">
 			<div align="center" style="font-size: 20px;line-height: 25px">下面有你么？</div>
-			<div style="height: 340px">
-				<div class="person-img"><a href="@{items.guess()}"><img width="250" src="@{'/public/images/person/1.png'}"/></a></div>
-				<div class="person-img"><a href="@{items.guess()}"><img width="245" src="@{'/public/images/person/2.png'}"/></a></div>
-				<div class="person-img"><a href="@{items.guess()}"><img width="400" src="@{'/public/images/person/3.png'}"/></a></div>
+			<div style="height: 350px">
+				<div class="person-img" style="width: 250px">
+					<img src="@{'/public/images/person/1.png'}"/>
+					<div class="cover" onclick="window.location.href='@{items.guess()}' ">
+				        <h3>强震摧毁加勒比海小国海地</h3> 
+				        <p>今年，战争、经济动荡和自然灾害席卷全球，制造了无数的伤痛；但是，在痛苦的同时仍有明亮的瞬间存在。</p>  
+				   	</div> 
+				</div>
+				<div class="person-img" style="width: 250px">
+					<img src="@{'/public/images/person/2.png'}"/>
+					<div class="cover" onclick="window.location.href='@{items.guess()}' ">
+				        <h3>强震摧毁加勒比海小国海地</h3> 
+				        <p>今年，战争、经济动荡和自然灾害席卷全球，制造了无数的伤痛；但是，在痛苦的同时仍有明亮的瞬间存在。</p> 
+				   	</div> 
+				</div>
+				<div class="person-img" style="width: 400px">
+					<img src="@{'/public/images/person/3.png'}"/>
+					<div class="cover" onclick="window.location.href='@{items.guess()}' ">
+				        <h3>强震摧毁加勒比海小国海地</h3> 
+				        <p>今年，战争、经济动荡和自然灾害席卷全球，制造了无数的伤痛；但是，在痛苦的同时仍有明亮的瞬间存在。</p> 
+				   	</div>
+				</div>
 			</div>
 			<div style="height: 340px">
-				<div class="person-img"><a href="@{items.guess()}"><img width="300" src="@{'/public/images/person/4.png'}"/></a></div>
-				<div class="person-img"><a href="@{items.guess()}"><img width="330" src="@{'/public/images/person/5.png'}"/></a></div>
-				<div class="person-img"><a href="@{items.guess()}"><img width="270" src="@{'/public/images/person/6.png'}"/></a></div>
+				<div class="person-img" style="width: 300px">
+					<img src="@{'/public/images/person/4.png'}"/>
+					<div class="cover" onclick="window.location.href='@{items.guess()}' ">
+				        <h3>强震摧毁加勒比海小国海地</h3> 
+				        <p>今年，战争、经济动荡和自然灾害席卷全球，制造了无数的伤痛；但是，在痛苦的同时仍有明亮的瞬间存在。</p> 
+				   	</div>
+				</div>
+				<div class="person-img" style="width: 330px">
+					<img src="@{'/public/images/person/5.png'}"/>
+					<div class="cover" onclick="window.location.href='@{items.guess()}' ">
+				        <h3>强震摧毁加勒比海小国海地</h3> 
+				        <p>今年，战争、经济动荡和自然灾害席卷全球，制造了无数的伤痛；但是，在痛苦的同时仍有明亮的瞬间存在。</p> 
+				   	</div>
+				</div>
+				<div class="person-img" style="width: 270px">
+					<img src="@{'/public/images/person/6.png'}"/>
+					<div class="cover" onclick="window.location.href='@{items.guess()}' ">
+				        <h3>强震摧毁加勒比海小国海地</h3> 
+				        <p>今年，战争、经济动荡和自然灾害席卷全球，制造了无数的伤痛；但是，在痛苦的同时仍有明亮的瞬间存在。</p> 
+				   	</div>
+				</div>
 			</div>
 		</div>
 	</div>

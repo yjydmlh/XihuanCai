@@ -280,6 +280,16 @@ ul,ol,li {
 	height: 25px;
 }
 .person-img {
+	position:relative;
 	float: left;
-	padding: 10px 10px 10px 10px;
+	padding: 10px;
+}
+.person-img img {
+	width: 100%;
+}
+.cover {
+	position:absolute;
+	background:#000;
+	color: white;
+	cursor: pointer;
 }

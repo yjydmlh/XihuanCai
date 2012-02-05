@@ -293,3 +293,6 @@ ul,ol,li {
 	color: white;
 	cursor: pointer;
 }
+.inner-cover {
+	margin: 10px;
+}

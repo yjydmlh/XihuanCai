@@ -1,12 +1,15 @@
 package controllers;
 
+import java.util.List;
+
 import models.Item;
-import play.db.jpa.Blob;
+import play.Logger;
 
 
-public class Items extends Application {
+public class Items extends CRUD {
   public static void guess(){
-    render();
+    List items = Item.findAll();
+    render(items);
   }
   
   public static void edit(){
@@ -17,4 +20,10 @@ public class Items extends Application {
     item.save();
   }
   
+  public static void getImg(Long itemId){
+    Item item = Item.findById(itemId);
+    response.setContentTypeIfNotSet(item.img.type());
+    Logger.info(item.img.getFile().getName());
+    renderBinary(item.img.get());
+   }
 }

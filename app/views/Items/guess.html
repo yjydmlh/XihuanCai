@@ -187,11 +187,25 @@
 			       </li>
 				</ul>
 			</div>
-			
+			#{list items , as: 'i'}
+			<div class="goods">
+				<div class="goods-pic" style="height:210px">            
+					<a href="${i.url}" target="_blank">                
+						<img src="@{items.getImg(i.id)}" height="210px"/>
+					</a>
+				</div>      
+				<div class="goods-stat clearfix">
+					<span class="like-num">喜欢</span>
+				</div>                     
+				<ul class="comments">  
+				   <li>${i.description }</li>
+				</ul>
+			</div>
+			#{/list}
 		</div>
 		<!-- 分页 -->
-		<div class="page-box" style="display: block; ">
-			<div class="pagin inlineblock clearfix">
+		<div class="page-box" style="display: block;">
+			<div class="pagin inlineblock clearfix" align="center">
 				<a href="#">上一页</a>
 				<a href="#">1</a>
 				<span>2</span>

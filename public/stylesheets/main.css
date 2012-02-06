@@ -178,7 +178,7 @@ ul,ol,li {
 	margin-top: 20px;
 }
 .guess-area {
-	padding:0 6px 6px;
+	padding:6px 6px;
 	margin-top: 10px;
 }
 .goods .comments {
@@ -218,6 +218,7 @@ ul,ol,li {
 	margin-bottom: 50px;
 }
 .page-box .pagin {
+	width: 100%;
 	position: relative;
 	height: 28px;
 	margin: 0 auto;

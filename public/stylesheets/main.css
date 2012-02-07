@@ -139,6 +139,24 @@ ul,ol,li {
 	margin-right: 20px;
 	vertical-align:middle;
 }
+.specialday li{
+	float: left;
+	display: inline;
+	margin: 10px 8px 0 0;
+	padding-left: 13px;
+	background: url(../../images/ui/tag-bg.png) no-repeat 0 -8px;
+	cursor: pointer;
+}
+.specialday li a {
+	float: left;
+	display: block;
+	height: 28px;
+	line-height: 28px;
+	padding: 0 15px 0 2px;
+	color: #333;
+	background: url(../../images/ui/tag-bg.png) no-repeat right -36px;
+	white-space: nowrap;
+}
 .query-button {
 	margin-bottom: -10px;
   float: right;

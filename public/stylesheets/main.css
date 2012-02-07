@@ -142,9 +142,9 @@ ul,ol,li {
 .specialday li{
 	float: left;
 	display: inline;
-	margin: 10px 8px 0 0;
+	margin: 5px 8px 0 0;
 	padding-left: 13px;
-	background: url(../../images/ui/tag-bg.png) no-repeat 0 -8px;
+	background: url(../images/tag-bg.png) no-repeat 0 -8px;
 	cursor: pointer;
 }
 .specialday li a {
@@ -154,8 +154,9 @@ ul,ol,li {
 	line-height: 28px;
 	padding: 0 15px 0 2px;
 	color: #333;
-	background: url(../../images/ui/tag-bg.png) no-repeat right -36px;
+	background: url(../images/tag-bg.png) no-repeat right -36px;
 	white-space: nowrap;
+	text-decoration: none;
 }
 .query-button {
 	margin-bottom: -10px;

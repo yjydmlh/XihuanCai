@@ -12,6 +12,11 @@ public class Items extends CRUD {
     render(items);
   }
   
+  public static void specialday(){
+    List items = Item.findAll();
+    render(items);
+  }
+  
   public static void edit(){
     render();
   }

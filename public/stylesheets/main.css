@@ -139,6 +139,11 @@ ul,ol,li {
 	margin-right: 20px;
 	vertical-align:middle;
 }
+.query-button {
+	margin-bottom: -10px;
+  float: right;
+  vertical-align:middle;
+}
 .footer {
 	position: relative;
 	height: 192px;

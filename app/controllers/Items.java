@@ -4,12 +4,23 @@ import java.util.List;
 
 import models.Item;
 import play.Logger;
+import utils.Constants;
 
 
 public class Items extends CRUD {
-  public static void guess(){
-    List items = Item.findAll();
-    render(items);
+  /**
+   * Guess what you like.
+   * @param pageNo
+   */
+  public static void guess(int pageNo){
+    int totalPage = Item.getTotalPageNo();
+    if(pageNo<=0){
+      pageNo = 1;
+    }else if(pageNo > totalPage){
+      pageNo = totalPage;
+    }
+    List items = Item.find("order by id desc").fetch(pageNo, Constants.PAGE_SIZE_GUESS);
+    render(items, totalPage, pageNo);
   }
   
   public static void specialday(){
@@ -27,8 +38,10 @@ public class Items extends CRUD {
   
   public static void getImg(Long itemId){
     Item item = Item.findById(itemId);
-    response.setContentTypeIfNotSet(item.img.type());
-    Logger.info(item.img.getFile().getName());
-    renderBinary(item.img.get());
+    if(item.img!=null && item.img.getFile()!=null){
+      response.setContentTypeIfNotSet(item.img.type());
+      Logger.info(item.img.getFile().getName());
+      renderBinary(item.img.get());
+    }
    }
 }

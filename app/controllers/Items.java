@@ -23,10 +23,10 @@ public class Items extends CRUD {
     render(items, totalPage, pageNo);
   }
   
-  public static void specialday(){
-    //List items = Item.findAll();
-    //render(items);
-				guess(1);
+  public static void specialday(int pageNo){
+    int totalPage = Item.getTotalPageNo();
+    List items = Item.findAll();
+    render(items, pageNo, totalPage);
   }
   
   public static void edit(){
@@ -39,14 +39,14 @@ public class Items extends CRUD {
   
   public static void getImg(Long itemId){
 				try{
-    Item item = Item.findById(itemId);
-    if(item.img!=null && item.img.getFile()!=null){
-      response.setContentTypeIfNotSet(item.img.type());
-      Logger.info(item.img.getFile().getName());
-      renderBinary(item.img.get());
-    }
+     Item item = Item.findById(itemId);
+     if(item.img!=null && item.img.getFile()!=null){
+       response.setContentTypeIfNotSet(item.img.type());
+       Logger.info(item.img.getFile().getName());
+       renderBinary(item.img.get());
+     }
 				}catch(Exception e){
-				  
+				  Logger.error("无法获取图片,itemId = " + itemId);
 				}
    }
 }

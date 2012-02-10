@@ -24,8 +24,9 @@ public class Items extends CRUD {
   }
   
   public static void specialday(){
-    List items = Item.findAll();
-    render(items);
+    //List items = Item.findAll();
+    //render(items);
+				guess(1);
   }
   
   public static void edit(){
@@ -37,11 +38,15 @@ public class Items extends CRUD {
   }
   
   public static void getImg(Long itemId){
+				try{
     Item item = Item.findById(itemId);
     if(item.img!=null && item.img.getFile()!=null){
       response.setContentTypeIfNotSet(item.img.type());
       Logger.info(item.img.getFile().getName());
       renderBinary(item.img.get());
     }
+				}catch(Exception e){
+				  
+				}
    }
 }

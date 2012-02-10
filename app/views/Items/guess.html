@@ -223,12 +223,12 @@
 					<span>1</span>
 				#{/else}
 				#{if pageNo + 1 < totalPage }<a href="@{items.guess(pageNo + 1)}">${pageNo + 1}</a>#{/if}
-				#{if pageNo + 2 < totalPage }<a href="@{items.guess(pageNo + 2)}">${pageNo + 2}</a>#{/if}
-				#{if pageNo + 2 != totalPage }
+				#{if pageNo + 2 < totalPage }
+				<a href="@{items.guess(pageNo + 2)}">${pageNo + 2}</a>
 					<span>...</span>
 				#{/if}
-				<a href="@{items.guess(totalPage)}">${totalPage}</a>
 				#{if pageNo < totalPage }
+				 <a href="@{items.guess(totalPage)}">${totalPage}</a>
 					<a href="@{items.guess(pageNo + 1)}">下一页</a>
 				#{/if}
 			</div>

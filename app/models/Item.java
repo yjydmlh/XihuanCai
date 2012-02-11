@@ -1,12 +1,11 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import play.Logger;
-import play.data.validation.MinSize;
-import play.data.validation.Required;
 import play.db.jpa.Blob;
 import play.db.jpa.Model;
 import utils.Constants;
@@ -17,9 +16,11 @@ import utils.Constants;
 @Table(name="T_ITEM")
 public class Item extends Model{
 	public String description;
-	//商品图片
+	//Shopping item image.
  public Blob img;
  public String url;
+ @OneToMany(mappedBy="item")
+ public List<LabelItem> labelItems;
  public Item(){}
  public Item(String description, String url){
    this.description = description;

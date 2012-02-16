@@ -22,7 +22,7 @@ public class Item extends Model{
 	public String description;
  public Blob img;
  public String url;
- public Long baseScore;
+ public Long baseScore = 0l;
  @OneToMany(mappedBy="item")
  public List<LabelItem> labelItems;
  @OneToMany(mappedBy="item")
@@ -49,9 +49,17 @@ public class Item extends Model{
   * @return
   */
  public static List<Item> guessItem(int pageNo, Map<String,String> queryItems){
+   //先检查倒排索引中是否已经存在
+   String key = ItemCache.generateQueryKeyMD5(queryItems);
+   ItemCache itemCache = ItemCache.find("key = ? and pageNo = ?", key, pageNo).first();
+   if (itemCache.pageSize == Constants.PAGE_SIZE_GUESS
+       && itemCache.pageNo == pageNo ) {
+     //TODO 当上次cache超过一天的时候重建索引
+     return itemCache.getItemsByArarry();
+   }
+   //倒排索引中不存在则进行查询并索引
    for (Entry<String, String> e : queryItems.entrySet()) {
-     String labelName = e.getKey();
-     String lalelValue = e.getValue();
+     
    }
    return null;
  }

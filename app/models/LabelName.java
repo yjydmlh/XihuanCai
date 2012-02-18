@@ -8,7 +8,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import models.score.ItemLabelNameValueScore;
-
 import play.db.jpa.Model;
 
 @Entity
@@ -19,7 +18,7 @@ public class LabelName extends Model{
   public List<LabelItem> labelItems;
   @OneToMany(mappedBy="labelName")
   public Set<ItemLabelNameValueScore> itemLabelNameValueScores;
-  
+
   @Override
   public String toString() {
     return this.id + " " + this.name;

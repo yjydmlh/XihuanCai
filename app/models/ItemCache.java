@@ -25,7 +25,7 @@ public class ItemCache extends Model {
   /**
    * 根据数组索引获取Item
    */
-  public List<Item> getItemsByArarry(){
+  public List<Item> getItems(){
     List<Item> items = new ArrayList<Item>();
     String[] ids = this.itemIds.split(",");
     for (int i = 0; i < ids.length; i++) {

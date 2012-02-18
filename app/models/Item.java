@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -62,16 +63,23 @@ public class Item extends Model{
   * @return
   */
  public static List<Item> guessItem(int pageNo, Map<String,String> queryItems){
+   if(queryItems.size()==0){
+     return new ArrayList<Item>();
+   }
    //先检查倒排索引中是否已经存在
    String key = ItemCache.generateQueryKeyMD5(queryItems);
-   ItemCache itemCache = ItemCache.find("key = ? and pageNo = ?", key, pageNo).first();
-   if (itemCache.pageSize == Constants.PAGE_SIZE_GUESS
-       && itemCache.pageNo == pageNo ) {
-     //TODO 当上次cache超过一天的时候重建索引
-     return itemCache.getItemsByArarry();
+   Long cacheCount = ItemCache.count("key = ? and pageNo = ? and pageSize = ?",
+         key, pageNo, Constants.PAGE_SIZE_GUESS);
+   if(cacheCount == 0){
+     ItemCacheJobs.cache(queryItems);
    }
-   ItemCacheJobs.cache(queryItems);
-   return null;
+   ItemCache itemCache = ItemCache.find("key = ? and pageNo = ? and pageSize = ?",
+       key, pageNo, Constants.PAGE_SIZE_GUESS).first();
+   if(itemCache!=null){
+     return itemCache.getItems();
+   }else{
+     return new ArrayList<Item>();
+   }
  }
  /**
   * The main algorithm of special day guessing.

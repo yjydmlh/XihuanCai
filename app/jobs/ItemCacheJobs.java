@@ -26,6 +26,9 @@ public class ItemCacheJobs extends Job {
    * @param queryItems
    */
   public static void cache(Map<String,String> queryItems){
+    if(queryItems.size()==0){
+      return;
+    }
     String key = ItemCache.generateQueryKeyMD5(queryItems);
     BigHeap<ItemCacheNode> bigHeap = new BigHeap(new ItemCacheNodeComprator());
     //遍历所有Item，进行索引、排序
@@ -57,5 +60,14 @@ public class ItemCacheJobs extends Job {
         builder.append(",");
       }
     }
+  }
+  /**
+   * 清除无用的ItemCache
+   * @param key
+   * @param pageSize
+   * @param date
+   */
+  public static void clearCache(int pageSize){
+    ItemCache.delete("pageSize = ?", pageSize);
   }
 }

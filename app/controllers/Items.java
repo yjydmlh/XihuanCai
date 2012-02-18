@@ -5,6 +5,7 @@ import java.util.List;
 import models.Item;
 import play.Logger;
 import utils.Constants;
+import utils.QueryItem;
 
 
 public class Items extends CRUD {
@@ -12,7 +13,7 @@ public class Items extends CRUD {
    * Guess what you like.
    * @param pageNo
    */
-  public static void guess(int pageNo){
+  public static void guess(int pageNo, QueryItem query){
     int totalPage = Item.getTotalPageNo();
     if(pageNo<=0){
       pageNo = 1;
@@ -22,21 +23,21 @@ public class Items extends CRUD {
     List items = Item.find("order by id desc").fetch(pageNo, Constants.PAGE_SIZE_GUESS);
     render(items, totalPage, pageNo);
   }
-  
+
   public static void specialday(int pageNo){
     int totalPage = Item.getTotalPageNo();
     List items = Item.findAll();
     render(items, pageNo, totalPage);
   }
-  
+
   public static void edit(){
     render();
   }
-  
+
   public static void save(Item item){
     item.save();
   }
-  
+
   public static void getImg(Long itemId){
 				try{
      Item item = Item.findById(itemId);

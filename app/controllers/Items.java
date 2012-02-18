@@ -42,7 +42,6 @@ public class Items extends CRUD {
      Item item = Item.findById(itemId);
      if(item.img!=null && item.img.getFile()!=null){
        response.setContentTypeIfNotSet(item.img.type());
-       Logger.info(item.img.getFile().getName());
        renderBinary(item.img.get());
      }
 				}catch(Exception e){

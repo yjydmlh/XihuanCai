@@ -11,16 +11,30 @@ import java.util.Map;
 public class QueryItem {
   public String gender;
   public int age;
-  //工作行业
+  // 工作行业
   public String industry;
-  //消费能力
+  // 消费能力
   public String consumptionLevel;
-  //爱好
+  // 爱好
   public String hobby;
 
-  public Map<String, String> generateQueryItems(){
+  public Map<String, String> generateQueryItemsMap() {
     Map<String, String> queryItems = new HashMap<String, String>();
-    queryItems.put("gender", this.gender);
-    queryItems.put("age", this.age);
+    if (this.gender != null && !this.gender.trim().equals("")) {
+      queryItems.put("gender", this.gender);
+    }
+    if (this.age > 0) {
+      queryItems.put("age", this.age + "");
+    }
+    if (this.industry != null && !this.industry.trim().equals("")) {
+      queryItems.put("industry", this.industry);
+    }
+    if (this.consumptionLevel != null && !this.consumptionLevel.trim().equals("")) {
+      queryItems.put("consumptionLevel", this.consumptionLevel);
+    }
+    if (this.hobby != null && !this.hobby.trim().equals("")) {
+      queryItems.put("hobby", this.hobby);
+    }
+    return queryItems;
   }
 }

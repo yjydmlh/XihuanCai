@@ -26,13 +26,11 @@ public class ItemCacheJobs extends Job {
    * @param queryItems
    */
   public static void cache(Map<String,String> queryItems){
-    if(queryItems.size()==0){
-      return;
-    }
     String key = ItemCache.generateQueryKeyMD5(queryItems);
     BigHeap<ItemCacheNode> bigHeap = new BigHeap(new ItemCacheNodeComprator());
     //遍历所有Item，进行索引、排序
     List<Item> items = Item.findAll();
+    int totalNum = items.size();
     for (Item item : items) {
       Long score = item.getScoreByQueryItems(queryItems);
       ItemCacheNode node = new ItemCacheNode(item.id,score);
@@ -48,11 +46,11 @@ public class ItemCacheJobs extends Job {
       counter++;
       builder.append(n.getItemId());
       //收集满一页进行持久化
-      if(counter%Constants.PAGE_SIZE_GUESS == 0){
+      if(counter%Constants.PAGE_SIZE_GUESS == 0 || counter == totalNum){
         ItemCache cache = new ItemCache();
         cache.date = new Date();
         cache.itemIds = builder.toString();
-        cache.key = key;
+        cache.queryKey = key;
         cache.pageNo = pageNo++;
         cache.pageSize = Constants.PAGE_SIZE_GUESS;
         cache.save();
@@ -63,7 +61,7 @@ public class ItemCacheJobs extends Job {
   }
   /**
    * 清除无用的ItemCache
-   * @param key
+   * @param queryKey
    * @param pageSize
    * @param date
    */

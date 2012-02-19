@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import play.db.jpa.Model;
 import play.libs.Codec;
 /**
@@ -13,9 +16,11 @@ import play.libs.Codec;
  * @author Royguo1988@gmail.com.
  *
  */
+@Entity
+@Table(name = "T_ITEM_CACHE")
 public class ItemCache extends Model {
   //前端查询参数生成的key(MD5)
-  public String key;
+  public String queryKey;
   public int pageNo;
   public int pageSize;
   //Array形式的数组,如1,2,3.
@@ -29,12 +34,12 @@ public class ItemCache extends Model {
     List<Item> items = new ArrayList<Item>();
     String[] ids = this.itemIds.split(",");
     for (int i = 0; i < ids.length; i++) {
-      Item item = Item.findById(ids[i]);
+      Item item = Item.findById(Long.parseLong(ids[i]));
       items.add(item);
     }
     return items;
   }
-  //~~~~~~~~~~~~~~~ class methods 
+  //~~~~~~~~~~~~~~~ class methods
   public static String generateArrayItemIds(List<Item> items){
     StringBuilder builder = new StringBuilder();
     for (Item item : items) {
@@ -44,7 +49,7 @@ public class ItemCache extends Model {
   }
   public static String generateQueryKeyMD5(Map<String,String> queryItems){
     if(queryItems.isEmpty()){
-      return null;
+      return Codec.hexMD5("");
     }
     StringBuilder builder = new StringBuilder();
     for (Entry<String, String> e : queryItems.entrySet()) {

@@ -33,7 +33,8 @@ public class ItemCacheJobs extends Job {
     int totalNum = items.size();
     for (Item item : items) {
       Long score = item.getScoreByQueryItems(queryItems);
-      ItemCacheNode node = new ItemCacheNode(item.id,score);
+      Long itemId = item.id;
+      ItemCacheNode node = new ItemCacheNode(itemId,score);
       bigHeap.push(node);
     }
     //将索引后的Item进行分页，持久化存储

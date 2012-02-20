@@ -9,11 +9,11 @@ GET     /                                       Application.index
 GET     /favicon.ico                            404
 
 # Import CRUD routes
-*      /admin              						module:crud
+*      	/admin              					module:crud
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
-
+GET		/robots.txt								staticFile:public/robots.txt
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
 *       /{action}                  				Application.{action}

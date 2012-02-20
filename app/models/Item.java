@@ -63,6 +63,9 @@ public class Item extends Model {
                     * Constants.BASE_SCORE_WEIGHT);
       }
     }
+    if(score == 0f){
+      score = Constants.BASE_SCORE_WEIGHT * this.baseScore;
+    }
     return score.longValue();
   }
 

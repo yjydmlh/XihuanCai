@@ -38,14 +38,6 @@ public class Items extends CRUD {
     render(items, pageNo, totalPage);
   }
 
-  public static void edit() {
-    render();
-  }
-
-  public static void save(Item item) {
-    item.save();
-  }
-
   public static void getImg(Long itemId) {
     try {
       Item item = Item.findById(itemId);

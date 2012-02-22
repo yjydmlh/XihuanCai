@@ -5,6 +5,13 @@
 		$("#pageNo").val(_pageNo);
 		$("#guessForm").submit();
 	}
+	function openItem(_url,_itemId){
+		$.post("@{Items.openItem()}",{
+				"guess_gender":"testvalue",
+				"itemId":_itemId
+				});
+		window.open(_url);
+	}
 	$(document).ready(function(){
 		$("input[name='guess_gender']").each(function(){
 			if($(this).val()=='${flash.guess_gender}'){
@@ -97,7 +104,7 @@
 			#{list items , as: 'i'}
 			<div class="goods">
 				<div class="goods-pic" style="height:210px" align="center">
-					<a href="${i.url}" target="_blank">
+					<a href="#" onclick="openItem('${i.url}',${i.id})">
                       <img src="@{items.getImg(i.id)}" height="210px"/>
                     </a>
 				</div>      

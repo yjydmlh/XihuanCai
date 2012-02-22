@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -15,6 +16,7 @@ import models.score.ItemLabelNameValueScore;
 import play.db.jpa.Blob;
 import play.db.jpa.Model;
 import utils.Constants;
+import utils.DateUtils;
 
 /**
  * @author MrROY
@@ -24,6 +26,7 @@ import utils.Constants;
 public class Item extends Model {
   public String description;
   public Blob img;
+  public String imgName;
   public String url;
   public Long baseScore = 0l;
   @OneToMany(mappedBy = "item")
@@ -36,7 +39,10 @@ public class Item extends Model {
   public String toString() {
     return this.id + " " + this.description;
   }
-
+  public void _save(){
+    this.imgName = img.getFile().getName();
+    super._save();
+  }
   // ~~~~~~~~~~~~~~~~~~ static methods
   /**
    * Get total page number.
@@ -88,6 +94,11 @@ public class Item extends Model {
         ItemCache.find("queryKey = ? and pageNo = ? and pageSize = ?", key, pageNo,
             Constants.PAGE_SIZE_GUESS).first();
     if (itemCache != null) {
+      //超过一定时间就重新生成索引(分钟数和小时数，以最小的为准)
+      if(DateUtils.getDiffHours(itemCache.date, new Date()) > Constants.ITEM_CACHE_TIMEOUT_HOURS
+          ||DateUtils.getDiffMinutes(itemCache.date, new Date()) > Constants.ITEM_CACHE_TIMEOUT_MINUTES){
+        ItemCacheJobs.cache(queryItems);
+      }
       return itemCache.getItems();
     } else {
       return new ArrayList<Item>();

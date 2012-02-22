@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import models.Item;
+import models.LabelName;
+import models.LabelValue;
+import models.score.ItemLabelNameValueScore;
 import play.Logger;
 
 
@@ -25,6 +28,25 @@ public class Items extends CRUD {
     List items = Item.guessItem(pageNo, queryItems);
     params.flash();
     render(items, totalPage, pageNo);
+  }
+
+  /**
+   * 前台打开单个链接，后台进行分值修改
+   * @param itemId
+   */
+  public static void openItem(Long itemId){
+    Map<String,String> queryItems = Items.generateQueryItems(params.all());
+    Item item = Item.findById(itemId);
+    for (Entry<String, String> e : queryItems.entrySet()) {
+      ItemLabelNameValueScore s = new ItemLabelNameValueScore();
+      s.labelName = LabelName.find("name = ?", e.getKey()).first();
+      s.labelValue = LabelValue.find("value = ?", e.getValue()).first();
+      s.score++;
+      s.item = item;
+      s.save();
+    }
+    item.baseScore++;
+    item.save();
   }
 
   public static void specialday(int pageNo) {

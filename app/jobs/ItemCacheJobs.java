@@ -17,8 +17,6 @@ public class ItemCacheJobs extends Job {
 
   @Override
   public void doJob() throws Exception {
-    // TODO Auto-generated method stub
-    // ItemCache.
     super.doJob();
   }
   /**

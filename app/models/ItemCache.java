@@ -35,7 +35,9 @@ public class ItemCache extends Model {
     String[] ids = this.itemIds.split(",");
     for (int i = 0; i < ids.length; i++) {
       Item item = Item.findById(Long.parseLong(ids[i]));
-      items.add(item);
+      if(item != null){
+        items.add(item);
+      }
     }
     return items;
   }

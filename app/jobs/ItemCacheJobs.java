@@ -18,6 +18,7 @@ public class ItemCacheJobs extends Job {
   @Override
   public void doJob() throws Exception {
     // TODO Auto-generated method stub
+    // ItemCache.
     super.doJob();
   }
   /**
@@ -27,6 +28,7 @@ public class ItemCacheJobs extends Job {
    */
   public static void cache(Map<String,String> queryItems){
     String key = ItemCache.generateQueryKeyMD5(queryItems);
+    clearCache(key);
     BigHeap<ItemCacheNode> bigHeap = new BigHeap(new ItemCacheNodeComprator());
     //遍历所有Item，进行索引、排序
     List<Item> items = Item.findAll();
@@ -55,6 +57,7 @@ public class ItemCacheJobs extends Job {
         cache.pageNo = pageNo++;
         cache.pageSize = Constants.PAGE_SIZE_GUESS;
         cache.save();
+        builder = new StringBuilder();
       }else{
         builder.append(",");
       }
@@ -63,10 +66,8 @@ public class ItemCacheJobs extends Job {
   /**
    * 清除无用的ItemCache
    * @param queryKey
-   * @param pageSize
-   * @param date
    */
-  public static void clearCache(int pageSize){
-    ItemCache.delete("pageSize = ?", pageSize);
+  public static void clearCache(String queryKey){
+    ItemCache.delete("queryKey = ?", queryKey);
   }
 }

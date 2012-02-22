@@ -96,10 +96,10 @@
 			<!-- goods -->
 			#{list items , as: 'i'}
 			<div class="goods">
-				<div class="goods-pic" style="height:210px">            
+				<div class="goods-pic" style="height:210px" align="center">
 					<a href="${i.url}" target="_blank">
-						<img src="@{items.getImg(i.id)}" height="210px"/>
-					</a>
+                      <img src="@{items.getImg(i.id)}" height="210px"/>
+                    </a>
 				</div>      
 				<div class="goods-stat clearfix">
 					<span class="like-num">喜欢</span>

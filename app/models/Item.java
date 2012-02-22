@@ -63,6 +63,9 @@ public class Item extends Model {
                     * Constants.BASE_SCORE_WEIGHT);
       }
     }
+    if(score == 0f){
+      score = Constants.BASE_SCORE_WEIGHT * this.baseScore;
+    }
     return score.longValue();
   }
 
@@ -73,19 +76,16 @@ public class Item extends Model {
    * @return
    */
   public static List<Item> guessItem(int pageNo, Map<String, String> queryItems) {
-    if (queryItems == null || queryItems.size() == 0) {
-      return new ArrayList<Item>();
-    }
     // 先检查倒排索引中是否已经存在
     String key = ItemCache.generateQueryKeyMD5(queryItems);
     Long cacheCount =
-        ItemCache.count("key = ? and pageNo = ? and pageSize = ?", key, pageNo,
+        ItemCache.count("queryKey = ? and pageNo = ? and pageSize = ?", key, pageNo,
             Constants.PAGE_SIZE_GUESS);
     if (cacheCount == 0) {
       ItemCacheJobs.cache(queryItems);
     }
     ItemCache itemCache =
-        ItemCache.find("key = ? and pageNo = ? and pageSize = ?", key, pageNo,
+        ItemCache.find("queryKey = ? and pageNo = ? and pageSize = ?", key, pageNo,
             Constants.PAGE_SIZE_GUESS).first();
     if (itemCache != null) {
       return itemCache.getItems();

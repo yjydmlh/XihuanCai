@@ -1,0 +1,31 @@
+<!-- 分页 -->
+<div class="page-box" style="display: block;">
+	<div class="pagin inlineblock clearfix" align="center">
+		#{if pageNo > 1}
+			<a href="#" onclick="guess(${pageNo - 1})">上一页</a>
+			#{if pageNo - 5 > 0 }
+				<a href="#" onclick="guess(1)">1</a>
+				<span>...</span>
+			#{/if}
+			#{if pageNo - 4 > 0}<a href="#" onclick="guess(${pageNo - 4})">${pageNo - 4}</a>#{/if}
+			#{if pageNo - 3 > 0}<a href="#" onclick="guess(${pageNo - 3})">${pageNo - 3}</a>#{/if}
+			#{if pageNo - 2 > 0}<a href="#" onclick="guess(${pageNo - 2})">${pageNo - 2}</a>#{/if}
+			#{if pageNo - 1 > 0}<a href="#" onclick="guess(${pageNo - 1})">${pageNo - 1}</a>#{/if}
+			<span>${pageNo}</span>
+		#{/if}
+		#{else}
+			<span>1</span>
+		#{/else}
+		#{if pageNo + 1 < totalPage }<a href="#" onclick="guess(${pageNo + 1})">${pageNo + 1}</a>#{/if}
+		#{if pageNo + 2 < totalPage }<a href="#" onclick="guess(${pageNo + 2})">${pageNo + 2}</a>#{/if}
+		#{if pageNo + 3 < totalPage }<a href="#" onclick="guess(${pageNo + 3})">${pageNo + 3}</a>#{/if}
+		#{if pageNo + 4 < totalPage }
+			<a href="#" onclick="guess(${pageNo + 5})">${pageNo + 4}</a>
+			<span>...</span>
+		#{/if}
+		#{if pageNo < totalPage }
+		 	<a href="#" onclick="guess(${totalPage})">${totalPage}</a>
+			<a href="#" onclick="guess(${pageNo + 1})">下一页</a>
+		#{/if}
+	</div>
+</div>

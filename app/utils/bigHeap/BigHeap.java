@@ -26,10 +26,9 @@ public class BigHeap<T> {
    */
   public static void main(String[] args) {
     BigHeap bigHeap = new BigHeap(new ItemCacheNodeComprator());
-    bigHeap.push(new ItemCacheNode(1,22));
-    bigHeap.push(new ItemCacheNode(2,11));
-    bigHeap.push(new ItemCacheNode(3,1));
-    bigHeap.push(new ItemCacheNode(4,44));
+    for (int i = 0; i < 3; i++) {
+      bigHeap.push(new ItemCacheNode(1+i,22+i));
+    }
     for (Object o : bigHeap.getTreeSet()) {
       System.out.println(((ItemCacheNode)o).getScore());
     }

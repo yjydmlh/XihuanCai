@@ -219,6 +219,7 @@ ul,ol,li {
 	text-overflow: ellipsis;
 	-o-text-overflow: ellipsis;
 	overflow: hidden;
+	height: 39px;
 }
 .goods .goods-pic {
 	position: relative;

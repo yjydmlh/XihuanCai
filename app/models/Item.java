@@ -41,6 +41,9 @@ public class Item extends Model {
   }
   public void _save(){
     this.imgName = img.getFile().getName();
+//    String ext = "." + this.img.type().split("\\/+")[1];
+//    this.imgName = img.getFile().getName() + ext;
+//    this.img.getFile().renameTo(new File(this.img.getFile().getAbsoluteFile() + ext));
     super._save();
   }
   // ~~~~~~~~~~~~~~~~~~ static methods

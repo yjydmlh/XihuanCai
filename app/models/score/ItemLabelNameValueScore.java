@@ -1,5 +1,6 @@
 package models.score;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -21,11 +22,18 @@ public class ItemLabelNameValueScore extends Model{
   @ManyToOne
   public Item item;
   @Required
-  @ManyToOne
+  @ManyToOne(cascade=CascadeType.PERSIST)
   public LabelName labelName;
   @Required
-  @ManyToOne
+  @ManyToOne(cascade=CascadeType.PERSIST)
   public LabelValue labelValue;
   @Required
   public Long score = 0l;
+
+  public ItemLabelNameValueScore(){}
+  public ItemLabelNameValueScore(LabelName labelName,LabelValue labelValue,Item item){
+    this.labelName = labelName;
+    this.labelValue = labelValue;
+    this.item = item;
+  }
 }

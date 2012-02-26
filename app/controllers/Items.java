@@ -52,26 +52,28 @@ public class Items extends CRUD {
     Item item = Item.findById(itemId);
     for (Entry<String, String> e : queryItems.entrySet()) {
 //      Logger.info(e.getKey() + " --> " + e.getValue());
-      ItemLabelNameValueScore s = new ItemLabelNameValueScore();
+      ItemLabelNameValueScore s = ItemLabelNameValueScore
+        .find("item.id = ? and labelName.name = ? and labelValue.value = ?",
+            item.id,e.getKey(),e.getValue()).first();
       LabelName labelName = LabelName.find("name = ?", e.getKey()).first();
       LabelValue labelValue = LabelValue.find("value = ?", e.getValue()).first();
       LabelItem labelItem = LabelItem.find("labelName.name = ?", e.getKey()).first();
+//      Logger.info("labelName = " + labelName);
       if(labelName==null){
         labelName = new LabelName(e.getKey());
-        labelName.save();
-      }
-      if(labelValue == null){
-        labelValue = new LabelValue(e.getValue());
-        labelValue.save();
       }
       if(labelItem == null && labelName !=null){
-        labelItem = new LabelItem(labelName,labelValue);
+        labelItem = new LabelItem(labelName);
       }
-      s.labelName = labelName;
-      s.labelValue = labelValue;
+      if(labelValue == null){
+        labelValue = new LabelValue(e.getValue(),labelItem);
+      }
+      if(s == null){
+        s = new ItemLabelNameValueScore(labelName,labelValue,item);
+      }
       s.score++;
-      s.item = item;
       s.save();
+
     }
     item.baseScore++;
     item.save();

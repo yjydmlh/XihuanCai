@@ -1,6 +1,5 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -31,10 +30,8 @@ public class LabelItem extends Model{
    * @param labelName
    * @param labelValue
    */
-  public LabelItem(LabelName labelName,LabelValue labelValue){
+  public LabelItem(LabelName labelName){
     this.labelName = labelName;
-    this.labelValues = new ArrayList<LabelValue>();
-    this.labelValues.add(labelValue);
   }
   public LabelItem(LabelName labelName,List<LabelValue> labelValues){
     this.labelName = labelName;

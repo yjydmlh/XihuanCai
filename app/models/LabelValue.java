@@ -20,14 +20,16 @@ import play.db.jpa.Model;
 public class LabelValue extends Model{
   @Required
   public String value;
+  @Required
   @ManyToOne
   public LabelItem labelItem;
   @OneToMany(mappedBy="labelValue")
   public Set<ItemLabelNameValueScore> itemLabelNameValueScores;
 
   public LabelValue(){}
-  public LabelValue(String value){
+  public LabelValue(String value,LabelItem labelItem){
     this.value = value;
+    this.labelItem = labelItem;
   }
   public String toString(){
     return this.id + " " + this.value;

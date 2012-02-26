@@ -61,12 +61,15 @@ public class Items extends CRUD {
 //      Logger.info("labelName = " + labelName);
       if(labelName==null){
         labelName = new LabelName(e.getKey());
+        labelName.save();
       }
       if(labelItem == null && labelName !=null){
         labelItem = new LabelItem(labelName);
+        labelItem.save();
       }
       if(labelValue == null){
         labelValue = new LabelValue(e.getValue(),labelItem);
+        labelValue.save();
       }
       if(s == null){
         s = new ItemLabelNameValueScore(labelName,labelValue,item);

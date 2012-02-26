@@ -15,7 +15,7 @@
 				"guess_specialDay":$("input[name='guess_specialDay']").val(),
 				"itemId":_itemId
 				});
-		//window.open(_url);
+		window.open(_url);
 	}
 	$(document).ready(function(){
 		$("input[name='guess_specialDay']").val('${flash.guess_specialDay}');
@@ -45,7 +45,7 @@
 			#{list items , as: 'i'}
 			<div class="goods">
 				<div class="goods-pic" style="height:210px" align="center">
-					<a href="#" onclick="openItem('${i.url}',${i.id})">
+					<a href="javascript:void(0)" onclick="openItem('${i.url}',${i.id})">
                       <img src="/item/images/${i.imgName}" height="210px"/>
                     </a>
 				</div>      

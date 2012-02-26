@@ -31,6 +31,18 @@ public class Items extends CRUD {
     render(items, totalPage, pageNo);
   }
 
+  public static void specialday(int pageNo) {
+    Map<String,String> queryItems = Items.generateQueryItems(params.all());
+    int totalPage = Item.getTotalPageNo();
+    if (pageNo <= 0) {
+      pageNo = 1;
+    } else if (pageNo > totalPage) {
+      pageNo = totalPage;
+    }
+    List items = Item.guessItem(pageNo, queryItems);
+    params.flash();
+    render(items, totalPage, pageNo);
+  }
   /**
    * 前台打开单个链接，后台进行分值修改
    * @param itemId
@@ -39,7 +51,7 @@ public class Items extends CRUD {
     Map<String,String> queryItems = Items.generateQueryItems(params.all());
     Item item = Item.findById(itemId);
     for (Entry<String, String> e : queryItems.entrySet()) {
-//      Logger.info(e.getKey() + " " + e.getValue());
+//      Logger.info(e.getKey() + " --> " + e.getValue());
       ItemLabelNameValueScore s = new ItemLabelNameValueScore();
       LabelName labelName = LabelName.find("name = ?", e.getKey()).first();
       LabelValue labelValue = LabelValue.find("value = ?", e.getValue()).first();
@@ -65,17 +77,6 @@ public class Items extends CRUD {
     item.save();
   }
 
-  public static void specialday(int pageNo) {
-    int totalPage = Item.getTotalPageNo();
-    if (pageNo <= 0) {
-      pageNo = 1;
-    } else if (pageNo > totalPage) {
-      pageNo = totalPage;
-    }
-    List items = Item.findAll();
-    render(items, pageNo, totalPage);
-  }
-
   public static void getImg(Long itemId) {
     try {
       Item item = Item.findById(itemId);
@@ -99,7 +100,7 @@ public class Items extends CRUD {
       String[] value = e.getValue()[0].split(",");
       if(key.indexOf("guess_")>-1 && value.length > 0){
         for (int i = 0; i < value.length && !value[i].equals(""); i++) {
-          Logger.info(key + " " + value[i]);
+//          Logger.info(key.replace("guess_", "") + " " + value[i]);
           queryItems.put(key.replace("guess_", ""), value[i]);
         }
       }

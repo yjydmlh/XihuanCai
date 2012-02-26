@@ -8,6 +8,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import models.score.ItemLabelNameValueScore;
+import play.data.validation.Required;
 import play.db.jpa.Model;
 /**
  * 查询选项的field名称，如gender、industry等.
@@ -17,6 +18,7 @@ import play.db.jpa.Model;
 @Entity
 @Table(name="T_LABEL_NAME")
 public class LabelName extends Model{
+  @Required
   public String name;
   @OneToMany(mappedBy="labelName")
   public List<LabelItem> labelItems;

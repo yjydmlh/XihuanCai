@@ -1,17 +1,40 @@
 #{extends 'main.html' /}
 #{set title:'Special Day' /}
 
-
+<script>
+	function guess(_pageNo){
+		$("#pageNo").val(_pageNo);
+		$("#specialDayForm").submit();
+	}
+	function specialDay(_day){
+		$("input[name='guess_specialDay']").val(_day);
+		guess(1);
+	}
+	function openItem(_url,_itemId){
+		$.post("@{Items.openItem()}",{
+				"guess_specialDay":$("input[name='guess_specialDay']").val(),
+				"itemId":_itemId
+				});
+		//window.open(_url);
+	}
+	$(document).ready(function(){
+		$("input[name='guess_specialDay']").val('${flash.guess_specialDay}');
+	});
+</script>
 <div id="guess-wrap">
 	<div class="tag-book">
 		<div class="bd">
 			<div class="tag-list clearfix">
+				<form id="specialDayForm" action="@{Items.specialday()}" method="post">
+					<input type="hidden" name="pageNo" id="pageNo" value="1"/>
+					<input type="hidden" name="guess_specialDay" value=""/>
 					<ul class="specialday clearfix">
-						<li><a href="#">情人节</a></li>
-						<li><a href="#">元宵节</a></li>
-						<li><a href="#">中秋节</a></li>
-						<li><a href="#">春节</a></li>
+						<li><a href="#" onclick="specialDay('情人节')">情人节</a></li>
+						<li><a href="#" onclick="specialDay('元宵节')">元宵节</a></li>
+						<li><a href="#" onclick="specialDay('中秋节')">中秋节</a></li>
+						<li><a href="#" onclick="specialDay('春节')">春节</a></li>
 					</ul>
+				</form>
 			</div>
 		</div>
 		<div class="ft"></div>
@@ -19,129 +42,22 @@
 	<div class="layout972 clearfix">
 		<div class="guess-area">
 			<!-- goods -->
+			#{list items , as: 'i'}
 			<div class="goods">
-				<div class="goods-pic" style="height:210px">            
-					<a href="http://s.click.taobao.com/t_8?e=7HZ6jHSTbIOR%2B0kB8GfRNg%2BlN83gJBiuncAAIUcWEzLGIg%3D%3D&p=mm_30137934_0_0" target="_blank">                
-						<img src="http://img.guang.com/product/78/21/100/1002178_1325592702411_210X315.jpg" height="210px">
-					</a>
-					
+				<div class="goods-pic" style="height:210px" align="center">
+					<a href="#" onclick="openItem('${i.url}',${i.id})">
+                      <img src="/item/images/${i.imgName}" height="210px"/>
+                    </a>
 				</div>      
 				<div class="goods-stat clearfix">
 					<span class="like-num">喜欢</span>
 				</div>                     
-				<ul class="comments">  
-				   <li>
-			       		富含丰富蜂蜜，牛奶，人参精华，温和清洁肌肤，同事有美白功效，适用于干性中性皮肤。
-			       </li>
+				<ul class="comments">
+				   <li>${i.description }</li>
 				</ul>
 			</div>
-			<div class="goods">
-				<div class="goods-pic" style="height:210px">            
-					<a href="http://s.click.taobao.com/t_8?e=7HZ6jHSTbIKq8LI6FJZS2%2Bgn3fNYs%2FMp8RYOPLJHW7HSpg%3D%3D&p=mm_30137934_0_0" target="_blank">                
-						<img src="http://img.guang.com/product/78/07/100/1000778_1325141447063_210X315.jpg" height="210px">
-					</a>
-					
-				</div>      
-				<div class="goods-stat clearfix">
-					<span class="like-num">喜欢</span>
-				</div>                     
-				<ul class="comments">  
-				   <li>
-			       		富含丰富蜂蜜，牛奶，人参精华，温和清洁肌肤，同事有美白功效，适用于干性中性皮肤。
-			       </li>
-				</ul>
-			</div>
-			<div class="goods">
-				<div class="goods-pic" style="height:210px">            
-					<a href="http://s.click.taobao.com/t_8?e=7HZ6jHSTbIKnUX7sTSzqKYLWXzp%2FM%2B0a%2BSY3vqtrgywZHg%3D%3D&p=mm_30137934_0_0" target="_blank">                
-						<img src="http://img.guang.com/product/28/45/100/1004528_1326686411025_210X315.jpg" height="210px">
-					</a>
-					
-				</div>      
-				<div class="goods-stat clearfix">
-					<span class="like-num">喜欢</span>
-				</div>                     
-				<ul class="comments">  
-				   <li>
-			       		富含丰富蜂蜜，牛奶，人参精华，温和清洁肌肤，同事有美白功效，适用于干性中性皮肤。
-			       </li>
-				</ul>
-			</div>
-			<div class="goods">
-				<div class="goods-pic" style="height:210px">            
-					<a href="#" target="_blank">                
-						<img src="http://img.guang.com/product/81/44/100/1004481_1326533155869_210X315.jpg" height="210px">
-					</a>
-				</div>      
-				<div class="goods-stat clearfix">
-					<span class="like-num">喜欢</span>
-				</div>                     
-				<ul class="comments">  
-				   <li>
-			       		富含丰富蜂蜜，牛奶，人参精华，温和清洁肌肤，同事有美白功效，适用于干性中性皮肤。
-			       </li>
-				</ul>
-			</div>
-			<div class="goods">
-				<div class="goods-pic" style="height:210px">            
-					<a href="#" target="_blank">                
-						<img src="http://img.guang.com/product/88/44/100/1004488_1326532586087_210X315.jpg" height="210px">
-					</a>
-				</div>      
-				<div class="goods-stat clearfix">
-					<span class="like-num">喜欢</span>
-				</div>                     
-				<ul class="comments">  
-				   <li>
-			       		富含丰富蜂蜜，牛奶，人参精华，温和清洁肌肤，同事有美白功效，适用于干性中性皮肤。
-			       </li>
-				</ul>
-			</div>
-			<div class="goods">
-				<div class="goods-pic" style="height:210px">            
-					<a href="#" target="_blank">                
-						<img src="http://img.guang.com/product/75/44/100/1004475_1326531499210_210X315.jpg" height="210px">
-					</a>
-				</div>      
-				<div class="goods-stat clearfix">
-					<span class="like-num">喜欢</span>
-				</div>                     
-				<ul class="comments">  
-				   <li>
-			       		富含丰富蜂蜜，牛奶，人参精华，温和清洁肌肤，同事有美白功效，适用于干性中性皮肤。
-			       </li>
-				</ul>
-			</div>
-			<div class="goods">
-				<div class="goods-pic" style="height:210px">            
-					<a href="#" target="_blank">                
-						<img src="http://img.guang.com/product/95/45/100/1004595_1326706124336_210X315.jpg" height="210px">
-					</a>
-				</div>      
-				<div class="goods-stat clearfix">
-					<span class="like-num">喜欢</span>
-				</div>                     
-				<ul class="comments">  
-				   <li>
-			       		富含丰富蜂蜜，牛奶，人参精华，温和清洁肌肤，同事有美白功效，适用于干性中性皮肤。
-			       </li>
-				</ul>
-			</div>
-			<div class="goods">
-				<div class="goods-pic" style="height:210px">            
-					<a href="#" target="_blank">                
-						<img src="http://img.guang.com/product/86/45/100/1004586_1326703615068_210X315.jpg" height="210px">
-					</a>
-				</div>      
-				<div class="goods-stat clearfix">
-					<span class="like-num">喜欢</span>
-				</div>                     
-				<ul class="comments">  
-				   <li>
-			       		富含丰富蜂蜜，牛奶，人参精华，温和清洁肌肤，同事有美白功效，适用于干性中性皮肤。
-			       </li>
-				</ul>
-			</div>
+			#{/list}
+			
 		</div>
 		<!-- 分页 -->
 		#{include 'Application/pager.html'/}

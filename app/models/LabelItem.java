@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 import play.db.jpa.Model;
 /**
- * 一个Item由一个具体的field(如gender)和多个value(如男、女)组成.
+ * 一个LabelItem由一个具体的field(如gender)和多个value(如男、女)组成.
  * @author Administrator
  *
  */

@@ -58,6 +58,11 @@ public class Item extends Model {
     return totalPage.intValue();
   }
 
+  /**
+   * 根据查询参数获得当前item总分数.
+   * @param queryItems
+   * @return
+   */
   public Long getScoreByQueryItems(Map<String, String> queryItems) {
     Float score = 0f;
     for (Entry<String, String> e : queryItems.entrySet()) {

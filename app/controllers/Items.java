@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import models.Item;
+import models.LabelItem;
 import models.LabelName;
 import models.LabelValue;
 import models.score.ItemLabelNameValueScore;
@@ -38,9 +39,24 @@ public class Items extends CRUD {
     Map<String,String> queryItems = Items.generateQueryItems(params.all());
     Item item = Item.findById(itemId);
     for (Entry<String, String> e : queryItems.entrySet()) {
+//      Logger.info(e.getKey() + " " + e.getValue());
       ItemLabelNameValueScore s = new ItemLabelNameValueScore();
-      s.labelName = LabelName.find("name = ?", e.getKey()).first();
-      s.labelValue = LabelValue.find("value = ?", e.getValue()).first();
+      LabelName labelName = LabelName.find("name = ?", e.getKey()).first();
+      LabelValue labelValue = LabelValue.find("value = ?", e.getValue()).first();
+      LabelItem labelItem = LabelItem.find("labelName.name = ?", e.getKey()).first();
+      if(labelName==null){
+        labelName = new LabelName(e.getKey());
+        labelName.save();
+      }
+      if(labelValue == null){
+        labelValue = new LabelValue(e.getValue());
+        labelValue.save();
+      }
+      if(labelItem == null && labelName !=null){
+        labelItem = new LabelItem(labelName,labelValue);
+      }
+      s.labelName = labelName;
+      s.labelValue = labelValue;
       s.score++;
       s.item = item;
       s.save();
@@ -80,10 +96,11 @@ public class Items extends CRUD {
     Map<String,String> queryItems = new HashMap<String, String>();
     for (Entry<String, String[]> e : params.entrySet()) {
       String key = e.getKey();
-      String[] value = e.getValue();
+      String[] value = e.getValue()[0].split(",");
       if(key.indexOf("guess_")>-1 && value.length > 0){
         for (int i = 0; i < value.length && !value[i].equals(""); i++) {
-          queryItems.put(key.replace("guess_", ""), value[0]);
+          Logger.info(key + " " + value[i]);
+          queryItems.put(key.replace("guess_", ""), value[i]);
         }
       }
     }

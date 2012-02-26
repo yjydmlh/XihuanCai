@@ -9,7 +9,11 @@ import javax.persistence.Table;
 
 import models.score.ItemLabelNameValueScore;
 import play.db.jpa.Model;
-
+/**
+ * 查询选项的field名称，如gender、industry等.
+ * @author MrROY
+ *
+ */
 @Entity
 @Table(name="T_LABEL_NAME")
 public class LabelName extends Model{
@@ -19,6 +23,10 @@ public class LabelName extends Model{
   @OneToMany(mappedBy="labelName")
   public Set<ItemLabelNameValueScore> itemLabelNameValueScores;
 
+  public LabelName(){}
+  public LabelName(String name){
+    this.name = name;
+  }
   @Override
   public String toString() {
     return this.id + " " + this.name;

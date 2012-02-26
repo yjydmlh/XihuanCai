@@ -2,12 +2,25 @@
 #{set title:'Guess' /}
 <script>
 	function guess(_pageNo){
+		//处理复选框数据
+		var guess_hobby = [];
+		$("input[name='hobby']").each(function(){
+			if($(this).attr("checked")){
+				guess_hobby.push($(this).val());
+			}
+		});
+		$("input[name='guess_hobby']").val(guess_hobby);
 		$("#pageNo").val(_pageNo);
 		$("#guessForm").submit();
 	}
 	function openItem(_url,_itemId){
 		$.post("@{Items.openItem()}",{
-				"guess_gender":"testvalue",
+				"guess_gender":$("input[name='guess_gender']").val(),
+				"guess_age":$("select[name='guess_age']").val(),
+				"guess_industry":$("select[name='guess_industry']").val(),
+				"guess_payLevel":$("select[name='guess_payLevel']").val(),
+				"guess_specialDay":$("select[name='guess_specialDay']").val(),
+				"guess_hobby":$("input[name='guess_hobby']").val(),
 				"itemId":_itemId
 				});
 		window.open(_url);
@@ -26,6 +39,25 @@
 		$("select[name='guess_industry'] option").each(function(){
 			if($(this).val()=='${flash.guess_industry}'){
 				$(this).attr("selected","selected");
+			}
+		});
+		$("select[name='guess_payLevel'] option").each(function(){
+			if($(this).val()=='${flash.guess_payLevel}'){
+				$(this).attr("selected","selected");
+			}
+		});
+		$("select[name='guess_specialDay'] option").each(function(){
+			if($(this).val()=='${flash.guess_specialDay}'){
+				$(this).attr("selected","selected");
+			}
+		});
+		//复选框先给隐藏域赋值，再对复选框进行勾选
+		$("input[name='guess_hobby']").each(function(){
+			$(this).val('${flash.guess_hobby}');
+		});
+		$("input[name='hobby']").each(function(){
+			if('${flash.guess_hobby}'.indexOf($(this).val())>-1){
+				$(this).attr("checked","checked");
 			}
 		});
 	});
@@ -68,6 +100,7 @@
 				<div class="query-item">
 					<span class="middle">消费水平:</span>
 					<select class="middle" name="guess_payLevel">
+						<option value="">请选择</option>
 						<option>学生</option>
 						<option>工人</option>
 						<option>普通白领</option>
@@ -75,16 +108,26 @@
 					</select>
 				</div>
 				<div class="query-item">
+					<span class="middle">节日:</span>
+					<select class="middle" name="guess_specialDay">
+						<option value="">请选择</option>
+						<option>情人节</option>
+						<option>春节</option>
+						<option>元宵节</option>
+					</select>
+				</div>
+				<div class="query-item">
+					<input type="hidden" name="guess_hobby" value=""/>
 					<span class="middle">日常爱好:</span>
-					<span class="middle"><input type="checkbox" name="guess_hobby" class="middle"/></span>
+					<span class="middle"><input type="checkbox" value="数码" name="hobby" class="middle"/></span>
 					<span class="middle">数码</span>
-					<span class="middle"><input type="checkbox" name="guess_hobby" class="middle"/></span>
+					<span class="middle"><input type="checkbox" value="聚会" name="hobby" class="middle"/></span>
 					<span class="middle">聚会</span>
-					<span class="middle"><input type="checkbox" name="guess_hobby" class="middle"/></span>
+					<span class="middle"><input type="checkbox" value="旅游" name="hobby" class="middle"/></span>
 					<span class="middle">旅游</span>
-					<span class="middle"><input type="checkbox" name="guess_hobby" class="middle"/></span>
+					<span class="middle"><input type="checkbox" value="手工" name="hobby" class="middle"/></span>
 					<span class="middle">手工</span>
-					<span class="middle"><input type="checkbox" name="guess_hobby" class="middle"/></span>
+					<span class="middle"><input type="checkbox" value="读书" name="hobby" class="middle"/></span>
 					<span class="middle">读书</span>
 				</div>
 				<div class="query-button">

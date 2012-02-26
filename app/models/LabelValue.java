@@ -23,6 +23,10 @@ public class LabelValue extends Model{
   @OneToMany(mappedBy="labelValue")
   public Set<ItemLabelNameValueScore> itemLabelNameValueScores;
 
+  public LabelValue(){}
+  public LabelValue(String value){
+    this.value = value;
+  }
   public String toString(){
     return this.id + " " + this.value;
   }

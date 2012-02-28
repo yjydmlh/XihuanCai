@@ -1,3 +1,4 @@
+// Bind init events.
 $(function(){ 
     $(".cover").css({"opacity":0,top:"300px",height:"10px"});
     $(".person-img").hover(function(){
@@ -17,7 +18,13 @@ $(function(){
 						 "opacity":0
 						 },{queue:false,duration:160});
     });
-}); 
+    //TODO need to be changed.
+    $(".not-like-it").click(function(){
+    	$(this).attr("class","like-it");
+    });
+});
+
+// Google analytics start
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-29153903-1']);
 _gaq.push(['_trackPageview']);
@@ -28,3 +35,4 @@ _gaq.push(['_trackPageview']);
  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
  var s = document.getElementsByTagName('script')[0]; 
  s.parentNode.insertBefore(ga, s);})();
+// Google analytics end

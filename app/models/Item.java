@@ -24,6 +24,7 @@ import utils.DateUtils;
 @Entity
 @Table(name = "T_ITEM")
 public class Item extends Model {
+  public String name;
   public String description;
   public Blob img;
   public String imgName;

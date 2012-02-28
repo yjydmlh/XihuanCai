@@ -1,18 +1,18 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'首页' /}
 #{set 'moreScripts'}
-  #{script 'init.js' /}
+  
 #{/set}
 <div id="wrap">
 	<div class="layout972 clearfix">
 		<div class="area" style="height:660px;padding:0 6px 6px;">
-			<div align="center" style="font-size: 20px;line-height: 25px">下面有你么？</div>
+			<div align="center" style="font-size: 20px;line-height: 25px">帮你寻找最适合他们的礼物</div>
 			<div style="height: 350px">
 				<div class="person-img" style="width: 250px">
 					<img src="@{'/public/images/person/1.jpg'}"/>
 					<div class="cover" onclick="window.location.href='@{items.guess()}' ">
 						<div class="inner-cover">
-					        <h3>李小小</h3> 
+					        <h3>李小小</h3>
 					        <p>85年天秤座</p>
 					        <p>外企白领</p>
 					        <p>喜欢摄影、咖啡、旅游和看电影</p>
